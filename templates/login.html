@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+login
+{% endblock %}
+
+{% block body%}
+<body class="bg-dark bg-gradient">
+    <div class="container">
+      <div class="container-fluid d-flex justify-content-center align-items-center">
+        <nav class="navbar navbar-expand-lg custom-nav-bar navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">AI Applications</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item px-0 py-0 border border-info rounded bg-dark d-flex justify-content-center">
+                    <a class="nav-link active d-flex justify-content-center" aria-current="page" href="/index" style="width: 100%; height: 100%;">Home</a>
+                  </li>
+                  <li class="nav-item px-0 py-0 border border-info rounded bg-dark d-flex justify-content-center">
+                    <a class="nav-link d-flex justify-content-center" href="/login" style="width: 100%; height: 100%;">Login</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+          <div class="container full-height d-flex justify-content-center align-items-center">
+        <!-- <h1>Login</h1> -->
+        <div class="card custom-card-login text-bg-info mb-3" style="max-width: 40rem;">
+          <div class="card-header">Login</div>
+          <div class="card-body">
+              <h5 class="card-title">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="{{ login_b }}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Login</button>
+                    <button class="{{ register_b }}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Register</button>
+                  </div>
+                </nav>
+              </h5>
+              <p class="card-text">
+                <div class="tab-content" id="nav-tabContent">
+                <div class="{{tabactivelogin}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                  <form method="post">
+                    <div class="mb-3">
+                      <label class="form-label">Username</label>
+                      <input type="text" class="form-control" name="username">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="checkbox">
+                      <label class="form-check-label" for="exampleCheck1">I'm not a robot</label>
+                    </div>
+                    <input type="hidden" id="myHiddenInput" name="checkform" value="login">
+                    <div class="row justify-content-between">
+                      <div class="col-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                      <div class="col-4">
+                        {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} w-auto p-3" role="alert">
+                          {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                  <form method="post">
+                    <div class="mb-3">
+                      <label class="form-label">Username</label>
+                      <input type="text" class="form-control" name="rusername">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <input type="password" class="form-control" name="rpassword">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Confirm Password</label>
+                      <input type="password" class="form-control" name="rcpassword">
+                    </div>
+                    <input type="hidden" id="myHiddenInput" name="checkform" value="register">
+                    <div class="row justify-content-between">
+                      <div class="col-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                      <div class="col-4">
+                        {% with messages = get_flashed_messages(with_categories=True) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} w-auto p-3" role="alert">
+                          {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                      </div>
+                    </div>
+                    
+                  </form>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="static/js/bootstrap.js"></script>
+</body>
+{% endblock %}
