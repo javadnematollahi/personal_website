@@ -1,0 +1,26 @@
+.full-height {
+    height: 90vh;
+  }
+.custom-card {
+    /* position: sticky; */
+    z-index: 1020;
+    top: 10rem;
+    max-width: 40rem; /* Adjust the max-width as needed */
+    width: 100%; /* Ensure the card takes full width of the max-width */
+    height: 30rem; /* Adjust the height as needed */
+  }
+
+  .custom-card-login {
+    /* position: sticky; */
+    z-index: 1020;
+    max-width: 40rem; /* Adjust the max-width as needed */
+    width: 100%; /* Ensure the card takes full width of the max-width */
+    height: 30rem; /* Adjust the height as needed */
+  }
+
+.custom-nav-bar {
+max-width: 40rem; /* Adjust the max-width as needed */
+z-index: 1030;
+width: 100%; /* Ensure the card takes full width of the max-width */
+height: 4rem; /* Adjust the height as needed */
+}
