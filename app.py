@@ -2,12 +2,20 @@ from flask import Flask, flash, session, render_template, request, redirect, url
 from database import Database, LoginModel, RegisterModel
 from bmr import BmrInputs, Bmr
 import bcrypt
+import os
+from age_prediction import predict
 
-app = Flask(__name__)
+app = Flask("personal website")
+app.config["UPLOAD_FOLDER"] = './static/uploads'
+app.config["ALLOWED_EXTENSIONS"] = {'png', 'jpg', 'jpeg'}
 app.secret_key = "javad personal website"
 db = Database()
 bmrcal = Bmr()
 loginuser = ""
+
+def allowed_files(file_name):
+    return True
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -25,22 +33,37 @@ def logout():
 def aiapps():
     if session.get("user_id"):
         if request.method == 'GET':
+            print("GETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGET")
             return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
         elif request.method == 'POST':
-            try:
-                bmr = BmrInputs(
-                        weight = float(request.form['weight']),
-                        height = float(request.form['height']),
-                        age = float(request.form['age'])
-                )
-                if request.form.get('sex') == 'Male':
-                    bmr_res = bmrcal.men(bmr.weight, bmr.height, bmr.age)
-                elif request.form.get('sex') == 'Female':
-                    bmr_res = bmrcal.women(bmr.weight, bmr.height, bmr.age)
-                return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, bmr=bmr_res)
-            except:
-                flash("login format data not correct", "warning")
-                return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
+            if request.form["ageorbmr"] == "bmr":
+                print("POSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOST")
+                try:
+                    bmr = BmrInputs(
+                            weight = float(request.form['weight']),
+                            height = float(request.form['height']),
+                            age = float(request.form['age'])
+                    )
+                    if request.form.get('sex') == 'Male':
+                        bmr_res = bmrcal.men(bmr.weight, bmr.height, bmr.age)
+                    elif request.form.get('sex') == 'Female':
+                        bmr_res = bmrcal.women(bmr.weight, bmr.height, bmr.age)
+                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, bmr=bmr_res)
+                except:
+                    flash("login format data not correct", "warning")
+                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
+            elif request.form["ageorbmr"] == "age":
+                my_image = request.files['face']
+                if my_image.filename == "":
+                    flash("You must upload your file first.", "info")
+                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
+                else:
+                    if my_image and allowed_files(my_image.filename):
+                        save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)    
+                        my_image.save(save_path)
+                        paths = predict(save_path)
+                        print(paths)
+                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, paths=paths)
     else:
         return redirect(url_for("index"))
 

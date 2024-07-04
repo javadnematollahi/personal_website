@@ -9,7 +9,8 @@ class User(SQLModel, table=True):
 
 
 
-engine = create_engine("sqlite:///./database.db", echo=True)
+# engine = create_engine("sqlite:///./database.db", echo=True)
+engine = create_engine("postgresql://root:BdrDaRdnBGd5XMM96SHKA1z4@personalwebsiteusers:5432/postgres")
 SQLModel.metadata.create_all(engine)
 
 # pydantic model for request validation
