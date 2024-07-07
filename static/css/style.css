@@ -361,17 +361,18 @@ img{
 	top:0px;
 	width:30px;
 	height:30px;
-	background:#b0ed60;
+	/* background:#ced1ca; */
 	border-radius:3px;	
 }
 
 .main-header-bar .social-links li a span{
 	position:relative;
 	z-index:1;	
+	color:#f0f0f0;	
 }
 
-.main-header-bar .social-links li a:hover{
-	color:#ffffff;	
+.main-header-bar .social-links li a span:hover{
+	color:#000000;	
 }
 
 .main-header-bar .nav-toggler{

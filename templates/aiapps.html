@@ -5,203 +5,216 @@ AI-Apps
 {% endblock %}
 
 {% block body %}
+
 <body class="bg-dark bg-gradient">
-    <div class="row">
-      <!-- <div class="container-fluid d-flex justify-content-center align-items-center"> -->
-        <div class="col-md-6 offset-md-3">
-        <nav class="navbar navbar-expand-lg custom-nav-bar navbar-dark bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">AI APPLICATIONS</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item px-0 py-0 border border-info rounded bg-dark d-flex justify-content-center" style="width: 100px;">
-                    <a class="nav-link active d-flex justify-content-center" aria-current="page" href="/index" style="width: 100%; height: 100%;">
-                        Home
-                    </a>
-                  </li>
-                  <li class="nav-item px-0 py-0 border border-info rounded bg-dark d-flex justify-content-center" style="width: 100px;">
-                    <a class="nav-link d-flex justify-content-center" href="/logout" style="width: 100%; height: 100%;">
-                        Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+  <div class="row">
+    <!-- <div class="container-fluid d-flex justify-content-center align-items-center"> -->
+    <div class="col-md-6 offset-md-3">
+      <nav class="navbar navbar-expand-lg custom-nav-bar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">AI APPLICATIONS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-0 py-0 border border-info rounded bg-dark d-flex justify-content-center"
+                style="width: 100px;">
+                <a class="nav-link active d-flex justify-content-center" aria-current="page" href="/index"
+                  style="width: 100%; height: 100%;">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item px-0 py-0 border border-info rounded bg-dark d-flex justify-content-center"
+                style="width: 100px;">
+                <a class="nav-link d-flex justify-content-center" href="/logout" style="width: 100%; height: 100%;">
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
     </div>
-    <div class="row" style="height: 4rem;">
-        <div class="col-md-4 offset-md-4">
-        </div>
+  </div>
+  <div class="row" style="height: 4rem;">
+    <div class="col-md-4 offset-md-4">
     </div>
-    <div class="row" style="height: 4rem;">
-        <div class="col-md-4 offset-md-4" style="background-color: rgb(233, 128, 96);">
-            <div class="h-100 d-flex justify-content-center align-items-center">
-                    welcome {{username}} 🌹
-            </div>
-        </div>
+  </div>
+  <div class="row" style="height: 4rem;">
+    <div class="col-md-4 offset-md-4" style="background-color: rgb(233, 128, 96);">
+      <div class="h-100 d-flex justify-content-center align-items-center">
+        welcome {{username}} 🌹
+      </div>
     </div>
-        <div class="row justify-content-around">
-            <!-- <h1>Login</h1> -->
+  </div>
+  <div class="row justify-content-around">
+    <!-- <h1>Login</h1> -->
+    <div class="col-4">
+      <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
+        <div class="card-header">
+          <div class="row justify-content-between">
             <div class="col-4">
-            <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
-          <div class="card-header">
-            <div class="row justify-content-between">
-                <div class="col-4">
-                    Age prediction
-                </div>
-                <div class="col-4">
-                </div>
-              </div>
+              Age prediction
             </div>
-          <div class="card-body">
-              <h5 class="card-title mb-0">
-                <nav>
-                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Predict</button>
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Help</button>
-                  </div>
-                </nav>
-              </h5>
-              <p class="card-text mb-0">
-                <div class="tab-content" id="nav-tabContent">
-                <div class="{{tabactivelogin}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                  <form method="post"  enctype="multipart/form-data">
-                    <div class="mb-2 col-8 offset-md-2">
-                        <label for="formFile" class="form-label d-flex justify-content-center">Upload an image:</label>
-                        <input class="form-control" type="file" id="formFile" name="face">
-                    </div>
-
-                    <div class="mb-3 col-8 offset-md-2">
-                        <button type="submit" class="btn btn-primary w-100" id="formFile">Predict</button>
-                    </div>
-                        <span>
-                            <div class="border" style="width: 100%; height: 230px;">
-                              <div class="slideshow-container">
-                                {% for img_path in paths %}
-                                <div class="slide">
-                                  <div class="d-flex justify-content-center align-items-center">
-                                    <img src={{img_path}} alt="Image {{loop.index}}" class="mt-3">
-                                  </div>
-                                </div>
-                                {% endfor %}
-                                <a class="prev" onclick="prevSlide()">&#10094;</a>
-                                <a class="next" onclick="nextSlide()">&#10095;</a>
-                              </div>
-
-
-                            </div>
-                        </span>
-                    <!-- <div class="mb-3 col-1">
-                    </div> -->
-
-                    <input type="hidden" id="myHiddenInput" name="ageorbmr" value="age">
-                  </form>
-                  <!-- <br><br>
-                  <label for="readonlyInput">Your BMR is:</label>
-                  <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}"> -->
-                </div>
-                <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                    <div>
-                        You use energy no matter what you're doing, even when sleeping. 😴
-                         The **BMR Calculator** will calculate your **Basal Metabolic Rate** (BMR); 
-                         the number of calories you'd burn if you stayed in bed all day.
-                        <br>
-                        If you've noticed that every year, it becomes harder to eat whatever you want and stay slim, 
-                        you've also learnt that your BMR decreases as you age. 🧬 Likewise, 
-                        depriving yourself of food in hopes of losing weight also decreases your BMR, a foil to your intentions. 
-                        <br>
-                        However, a regular routine of cardiovascular exercise can increase your BMR, 
-                        improving your health and fitness when your body's ability to burn energy gradually slows down. 🏋🏻
-                    </div>
-                </div>
-                </div>
-              </p>
+            <div class="col-4">
             </div>
           </div>
         </div>
-        <div class="col-4">
-            <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
-              <div class="card-header">
-                <div class="row justify-content-between">
-                    <div class="col-4">
-                        BMR calculator
-                    </div>
-                    <div class="col-4">
-                    </div>
-                  </div>
+        <div class="card-body">
+          <h5 class="card-title mb-0">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                  type="button" role="tab" aria-controls="nav-home" aria-selected="true">Predict</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                  type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Help</button>
+              </div>
+            </nav>
+          </h5>
+          <p class="card-text mb-0">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="{{tabactivelogin}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+              <form method="post" enctype="multipart/form-data">
+                <div class="mb-2 col-8 offset-md-2">
+                  <label for="formFile" class="form-label d-flex justify-content-center">Upload an image:</label>
+                  <input class="form-control" type="file" id="formFile" name="face">
                 </div>
-              <div class="card-body">
-                  <h5 class="card-title">
-                    <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Calculator</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Help</button>
+
+                <div class="mb-3 col-8 offset-md-2">
+                  <button type="submit" class="btn btn-primary w-100" id="formFile">Predict</button>
+                </div>
+                <span>
+                  <div class="border" style="width: 100%; height: 230px;">
+                    <div class="slideshow-container">
+                      {% for img_path in paths %}
+                      <div class="slide">
+                        <div class="d-flex justify-content-center align-items-center">
+                          <img src={{img_path}} alt="Image {{loop.index}}" class="mt-3">
+                        </div>
                       </div>
-                    </nav>
-                  </h5>
-                  <p class="card-text">
-                    <div class="tab-content" id="nav-tabContent">
-                    <div class="{{tabactivelogin}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                      <form method="post">
-                        <div class="row justify-content-around">
-                        <div class="mb-3 col-4">
-                          <label class="form-label d-flex justify-content-center">Weight(kg)</label>
-                          <input type="text" class="form-control" name="weight">
-                        </div>
-                        <div class="mb-3 col-4">
-                          <label class="form-label d-flex justify-content-center">Height(cm)</label>
-                          <input type="text" class="form-control" name="height">
-                        </div>
-                        <div class="mb-3 col-4">
-                            <label class="form-label d-flex justify-content-center">Age(year)</label>
-                            <input type="text" class="form-control" name="age">
-                        </div>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" value="Male">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Male
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" value="Female" checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              Female
-                            </label>
-                          </div>
-                        <input type="hidden" id="myHiddenInput" name="ageorbmr" value="bmr">
-                        <button type="submit" class="btn btn-primary">Calculate</button>
-                      </form>
-                      <br><br>
-                      <label for="readonlyInput">Your BMR is:</label>
-                      <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}">
+                      {% endfor %}
+                      <a class="prev" onclick="prevSlide()">&#10094;</a>
+                      <a class="next" onclick="nextSlide()">&#10095;</a>
                     </div>
-                    <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                        <div>
-                            You use energy no matter what you're doing, even when sleeping. 😴
-                             The **BMR Calculator** will calculate your **Basal Metabolic Rate** (BMR); 
-                             the number of calories you'd burn if you stayed in bed all day.
-                            <br>
-                            If you've noticed that every year, it becomes harder to eat whatever you want and stay slim, 
-                            you've also learnt that your BMR decreases as you age. 🧬 Likewise, 
-                            depriving yourself of food in hopes of losing weight also decreases your BMR, a foil to your intentions. 
-                            <br>
-                            However, a regular routine of cardiovascular exercise can increase your BMR, 
-                            improving your health and fitness when your body's ability to burn energy gradually slows down. 🏋🏻
-                        </div>
-                    </div>
-                    </div>
-                  </p>
-                </div>
+
+
+                  </div>
+                </span>
+                <!-- <div class="mb-3 col-1">
+                    </div> -->
+
+                <input type="hidden" id="myHiddenInput" name="ageorbmr" value="age">
+              </form>
+              <!-- <br><br>
+                  <label for="readonlyInput">Your BMR is:</label>
+                  <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}"> -->
+            </div>
+            <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+              tabindex="0">
+              <div>
+                You use energy no matter what you're doing, even when sleeping. 😴
+                The **BMR Calculator** will calculate your **Basal Metabolic Rate** (BMR);
+                the number of calories you'd burn if you stayed in bed all day.
+                <br>
+                If you've noticed that every year, it becomes harder to eat whatever you want and stay slim,
+                you've also learnt that your BMR decreases as you age. 🧬 Likewise,
+                depriving yourself of food in hopes of losing weight also decreases your BMR, a foil to your
+                intentions. 
+                <br>
+                However, a regular routine of cardiovascular exercise can increase your BMR,
+                improving your health and fitness when your body's ability to burn energy gradually slows down. 🏋🏻
               </div>
             </div>
+          </div>
+          </p>
         </div>
-        <script src="static/js/bootstrap.js"></script>
-        <script src="static/js/myjs.js"></script>
-    </body>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
+        <div class="card-header">
+          <div class="row justify-content-between">
+            <div class="col-4">
+              BMR calculator
+            </div>
+            <div class="col-4">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                  type="button" role="tab" aria-controls="nav-home" aria-selected="true">Calculator</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                  type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Help</button>
+              </div>
+            </nav>
+          </h5>
+          <p class="card-text">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="{{tabactivelogin}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+              <form method="post">
+                <div class="row justify-content-around">
+                  <div class="mb-3 col-4">
+                    <label class="form-label d-flex justify-content-center">Weight(kg)</label>
+                    <input type="text" class="form-control" name="weight">
+                  </div>
+                  <div class="mb-3 col-4">
+                    <label class="form-label d-flex justify-content-center">Height(cm)</label>
+                    <input type="text" class="form-control" name="height">
+                  </div>
+                  <div class="mb-3 col-4">
+                    <label class="form-label d-flex justify-content-center">Age(year)</label>
+                    <input type="text" class="form-control" name="age">
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" value="Male">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" value="Female" checked>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Female
+                  </label>
+                </div>
+                <input type="hidden" id="myHiddenInput" name="ageorbmr" value="bmr">
+                <button type="submit" class="btn btn-primary">Calculate</button>
+              </form>
+              <br><br>
+              <label for="readonlyInput">Your BMR is:</label>
+              <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}">
+            </div>
+            <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+              tabindex="0">
+              <div>
+                You use energy no matter what you're doing, even when sleeping. 😴
+                The **BMR Calculator** will calculate your **Basal Metabolic Rate** (BMR);
+                the number of calories you'd burn if you stayed in bed all day.
+                <br>
+                If you've noticed that every year, it becomes harder to eat whatever you want and stay slim,
+                you've also learnt that your BMR decreases as you age. 🧬 Likewise,
+                depriving yourself of food in hopes of losing weight also decreases your BMR, a foil to your
+                intentions. 
+                <br>
+                However, a regular routine of cardiovascular exercise can increase your BMR,
+                improving your health and fitness when your body's ability to burn energy gradually slows down. 🏋🏻
+              </div>
+            </div>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="static/js/bootstrap.js"></script>
+  <script src="static/js/myjs.js"></script>
+</body>
 {% endblock %}
-
