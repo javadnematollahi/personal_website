@@ -14,7 +14,7 @@
                 dottedOverlay:"yes",
                 delay:10000,
                 navigation: {
-                    keyboardNavigation:"off",
+                    keyboardNavigation:"on",
                     keyboard_direction: "horizontal",
                     mouseScrollNavigation:"off",
                     mouseScrollReverse:"default",
@@ -40,13 +40,13 @@
                             h_align:"left",
                             v_align:"bottom",
                             h_offset:20,
-                            v_offset:20
+                            v_offset:20,
                         },
                         right: {
                             h_align:"left",
                             v_align:"bottom",
                             h_offset:90,
-                            v_offset:20
+                            v_offset:20,
                         }
                     }
                     

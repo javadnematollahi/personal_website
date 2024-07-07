@@ -20,6 +20,10 @@ def allowed_files(file_name):
 def index():
     return render_template("index.html")
 
+@app.route("/result")
+def result():
+    return render_template("result.html")
+
 @app.route("/index")
 def index1():
     return render_template("index.html")
@@ -33,7 +37,7 @@ def logout():
 def aiapps():
     if session.get("user_id"):
         if request.method == 'GET':
-            print("GETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGET")
+            # print("GETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGET")
             return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
         elif request.method == 'POST':
             if request.form["ageorbmr"] == "bmr":
