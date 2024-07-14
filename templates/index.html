@@ -61,7 +61,7 @@
             <div class="main-nav-outer">
             	
                 <!--Logo Box-->
-                <div class="main-logo-box"><a href="/index"><img src="static/images/logoj.png" alt=""></a></div>
+                <div class="main-logo-box"><a href="/index"><img src="{{url_for('static', filename='/images/logoj.png')}}" alt=""></a></div>
                 
                 <!--Copyright Text-->
                 <div class="copyright-text-box">&copy; 2024 Javad . All Rights Reserved</div>
@@ -83,7 +83,7 @@
                             	<ul>
                                 	<li><a href="#menu-back">Go Back</a></li>
                                 	<li><a href="/login">Login</a></li>
-                                    <li><a href="/index">Logout</a></li>
+                                    <!-- <li><a href="/index">Logout</a></li> -->
                                     <!-- <li><a href="portfolio-3.html">Portfolio Type 03</a></li>
                                     <li><a href="portfolio-details.html">Details Type 01</a></li>
                                     <li><a href="portfolio-details-2.html">Details Type 02</a></li>
@@ -128,7 +128,7 @@
                 <ul>
                 	
                     <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1687" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="static/images/main-slider/office_modern.png" data-title="Slide Title" data-transition="parallaxvertical">
-                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="static/images/main-slider/office_modern.png"> 
+                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{url_for('static', filename='/images/main-slider/office_modern.png')}}"> 
                     
                     <div class="tp-caption tp-resizeme" 
                     data-paddingbottom="[0,0,0,0]"
@@ -301,7 +301,7 @@
                     </li>
                     
                     <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="static/images/main-slider/office.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="static/images/main-slider/office.jpg"> 
+                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{url_for('static', filename='/images/main-slider/office.jpg')}}"> 
                     
                     <div class="tp-caption tp-resizeme" 
                     data-paddingbottom="[0,0,0,0]"
@@ -386,7 +386,7 @@
                     </li>
                     
                     <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1690" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="static/images/main-slider/moonoffice.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="static/images/main-slider/moonoffice.jpg"> 
+                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{url_for('static', filename='/images/main-slider/moonoffice.jpg')}}"> 
                     
                     <div class="tp-caption tp-resizeme" 
                     data-paddingbottom="[0,0,0,0]"
@@ -526,7 +526,7 @@
                     <div class="row clearfix">
                     	<!--Image  Column-->
                         <div class="image-column col-md-6 col-sm-6 col-xs-12">
-                        	<figure class="image"><img src="static/images/resource/javad_5.jpg" alt=""></figure>
+                        	<figure class="image"><img src="{{url_for('static', filename='/images/resource/javad_5.jpg')}}" alt=""></figure>
                         </div>
                         <!--Content  Column-->
                         <div class="content-column col-md-6 col-sm-6 col-xs-12">
@@ -895,7 +895,7 @@
                                         <!--Image Column-->
                                     	<div class="image-column col-md-6 col-sm-12 col-xs-12">
                                         	<div class="image">
-                                            	<img src="static/images/resource/NLP_RAG.png" alt="" />
+                                            	<img src="{{url_for('static', filename='/images/resource/NLP_RAG.png')}}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -924,7 +924,7 @@
                                         <!--Image Column-->
                                     	<div class="image-column col-md-6 col-sm-12 col-xs-12">
                                         	<div class="image">
-                                            	<img src="static/images/resource/weightest1.png" alt="" />
+                                            	<img src="{{url_for('static', filename='/images/resource/weightest1.png')}}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -953,7 +953,7 @@
                                         <!--Image Column-->
                                     	<div class="image-column col-md-6 col-sm-12 col-xs-12">
                                         	<div class="image">
-                                            	<img src="static/images/resource/smartcushion.png" alt="" />
+                                            	<img src="{{url_for('static', filename='/images/resource/smartcushion.png')}}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -982,7 +982,7 @@
                                         <!--Image Column-->
                                     	<div class="image-column col-md-6 col-sm-12 col-xs-12">
                                         	<div class="image">
-                                            	<img src="static/images/resource/age_p.png" alt="" />
+                                            	<img src="{{url_for('static', filename='/images/resource/age_p.png')}}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -1011,7 +1011,7 @@
                                         <!--Image Column-->
                                     	<div class="image-column col-md-6 col-sm-12 col-xs-12">
                                         	<div class="image">
-                                            	<img src="static/images/resource/License_Plate.png" alt="" />
+                                            	<img src="{{url_for('static', filename='/images/resource/License_Plate.png')}}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -1053,19 +1053,19 @@
                         <div class="client-thumb-outer">
                             <div class="client-thumbs-carousel owl-carousel owl-theme">
                                 <div class="thumb-item">
-                                    <figure class="thumb-box"><img src="static/images/resource/nlp_logo.png" alt=""></figure>
+                                    <figure class="thumb-box"><img src="{{url_for('static', filename='/images/resource/nlp_logo.png')}}" alt=""></figure>
                                 </div>
                                 <div class="thumb-item">
-                                    <figure class="thumb-box"><img src="static/images/resource/age_p_logo.png" alt=""></figure>
+                                    <figure class="thumb-box"><img src="{{url_for('static', filename='/images/resource/age_p_logo.png')}}" alt=""></figure>
                                 </div>
                                 <div class="thumb-item">
-                                    <figure class="thumb-box"><img src="static/images/resource/License_Platelogo.png" alt=""></figure>
+                                    <figure class="thumb-box"><img src="{{url_for('static', filename='/images/resource/License_Platelogo.png')}}" alt=""></figure>
                                 </div>
                                 <div class="thumb-item">
-                                    <figure class="thumb-box"><img src="static/images/resource/smartcushionlogo.png" alt=""></figure>
+                                    <figure class="thumb-box"><img src="{{url_for('static', filename='/images/resource/smartcushionlogo.png')}}" alt=""></figure>
                                 </div>
                                 <div class="thumb-item">
-                                    <figure class="thumb-box"><img src="static/images/resource/weightest_logo.png" alt=""></figure>
+                                    <figure class="thumb-box"><img src="{{url_for('static', filename='/images/resource/weightest_logo.png')}}" alt=""></figure>
                                 </div>
                                 <!-- <div class="thumb-item">
                                     <figure class="thumb-box"><img src="images/resource/author-9.jpg" alt=""></figure>
@@ -1269,7 +1269,7 @@
                         <!--Info Column-->
                         <div class="info-column col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="inner">
-                                <div class="icon-box"><img src="static/images/icons/contact-icon-1.png" alt=""></div>
+                                <div class="icon-box"><img src="{{url_for('static', filename='/images/icons/contact-icon-1.png')}}" alt=""></div>
                                 <h3>My ADDRESS</h3>
                                 502 - 50 Kaitting trail<br>Oakville, ON
                             </div>
@@ -1277,7 +1277,7 @@
                         <!--Info Column-->
                         <div class="info-column col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="inner">
-                                <div class="icon-box"><img src="static/images/icons/contact-icon-2.png" alt=""></div>
+                                <div class="icon-box"><img src="{{url_for('static', filename='/images/icons/contact-icon-2.png')}}" alt=""></div>
                                 <h3>My EMail</h3>
                                 <a href="#">Javad7189@yahoo.com</a> <br>
                                 <a href="#">javadnematollahi92@gmail.com</a>
@@ -1286,7 +1286,7 @@
                         <!--Info Column-->
                         <div class="info-column col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="inner">
-                                <div class="icon-box"><img src="static/images/icons/contact-icon-3.png" alt=""></div>
+                                <div class="icon-box"><img src="{{url_for('static', filename='/images/icons/contact-icon-3.png')}}" alt=""></div>
                                 <h3>PHONE</h3>
                                 <a href="#">00989109002204</a> <br>
                                 <a href="#">00989394961724</a>
@@ -1342,35 +1342,35 @@
 
 
 
-<script src="static/js/jquery.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
+<script src="{{url_for('static', filename='/js/jquery.js')}}"></script>
+<script src="{{url_for('static', filename='/js/bootstrap.min.js')}}"></script>
 
 <!--Revolution Slider-->
-<script src="static/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script src="static/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="static/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
-<script src="static/js/main-slider-script.js"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.carousel.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.migration.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+<script src="{{url_for('static', filename='/plugins/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
+<script src="{{url_for('static', filename='/js/main-slider-script.js')}}"></script>
 <!--End Revolution Slider Script-->
 
-<script src="static/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="static/js/scrollTo.js"></script>
-<script src="static/js/pagenav.js"></script>
-<script src="static/js/jquery-ui.js"></script>
-<script src="static/js/jquery.fancybox.js"></script>
-<script src="static/js/mixitup.js"></script>
-<script src="static/js/owl.js"></script>
-<script src="static/js/knob.js"></script>
-<script src="static/js/appear.js"></script>
-<script src="static/js/wow.js"></script>
-<script src="static/js/script.js"></script>
+<script src="{{url_for('static', filename='/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{url_for('static', filename='/js/scrollTo.js')}}"></script>
+<script src="{{url_for('static', filename='/js/pagenav.js')}}"></script>
+<script src="{{url_for('static', filename='/js/jquery-ui.js')}}"></script>
+<script src="{{url_for('static', filename='/js/jquery.fancybox.js')}}"></script>
+<script src="{{url_for('static', filename='/js/mixitup.js')}}"></script>
+<script src="{{url_for('static', filename='/js/owl.js')}}"></script>
+<script src="{{url_for('static', filename='/js/knob.js')}}"></script>
+<script src="{{url_for('static', filename='/js/appear.js')}}"></script>
+<script src="{{url_for('static', filename='/js/wow.js')}}"></script>
+<script src="{{url_for('static', filename='/js/script.js')}}"></script>
 
 </body>
 </html>

@@ -8,10 +8,12 @@
 
         {% endblock %}
     </title>
-
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="static/css/mystyle.css">
-    <link rel="stylesheet" href="static/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/material-components-web@14.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mediapipe.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mystyle.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css')}}">
 </head>
 {% block body%}
 

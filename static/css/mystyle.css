@@ -1,3 +1,7 @@
+body{
+  font-family: Vazirmatn, sans-serif;
+}
+
 .full-height {
     height: 90vh;
   }
@@ -53,4 +57,9 @@ height: 4rem; /* Adjust the height as needed */
 }.next {
   right: 0;
   border-radius: 3px 0 0 3px;
+}
+
+.hide-text {
+  color: transparent;
+  text-indent: -9999px; 
 }

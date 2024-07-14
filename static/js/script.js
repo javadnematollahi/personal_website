@@ -1,3 +1,34 @@
+document.addEventListener('DOMContentLoaded', () => {
+	const urlInput = document.getElementById('urlInput');
+	const connectButton = document.getElementById('connectButton');
+	const video = document.getElementById('video');
+	const canvas = document.getElementById('canvas');
+	const captureButton = document.getElementById('captureButton');
+	const context = canvas.getContext('2d');
+  
+	connectButton.addEventListener('click', () => {
+	  const url = urlInput.value;
+	  if (url) {
+		// Set the video source to the provided URL
+		video.src = url;
+		console.log(url)
+		// Attempt to play the video
+		video.play().catch(error => {
+		  console.error('Error playing video:', error);
+		});
+	  }
+	});
+  
+	captureButton.addEventListener('click', () => {
+		console.log('Capturing image from video');
+	  if (video.readyState === 4) { // Check if the video is ready
+		context.drawImage(video, 0, 0, canvas.width, canvas.height);
+	  } else {
+		console.error('Video is not ready for capturing');
+	  }
+	});
+  });
+
 (function($) {
 	
 	"use strict";
@@ -567,3 +598,18 @@
 	});	
 
 })(window.jQuery);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

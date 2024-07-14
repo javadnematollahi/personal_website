@@ -1,7 +1,43 @@
-<head>
-    <!-- Our project just needs Font Awesome Sharp Solid + our Custom Icons -->
+ <!-- <head>
     <link rel="stylesheet" type="text/css" href="static/css/all.css">
   </head>
   <body>
     <a href="#"><i class="fa-brands fa-square-github">...</i></a>
+
+    
+  </body>  -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Save Scroll Position</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+      <div class="container mt-4">
+          <!-- Your long content here -->
+          <p>Scroll down to see more content...</p>
+          <div style="height: 2000px;"> <!-- Simulating a long page -->
+              <p>This is some long content...</p>
+          </div>
+      </div>
+  
+      <script>
+          // Save the scroll position before the page unloads
+          window.addEventListener('beforeunload', function() {
+              localStorage.setItem('scrollPosition', window.scrollY);
+          });
+  
+          // Restore the scroll position when the page loads
+          window.addEventListener('load', function() {
+              var scrollPosition = localStorage.getItem('scrollPosition');
+              if (scrollPosition) {
+                  window.scrollTo(0, scrollPosition);
+              }
+          });
+      </script>
   </body>
+  </html>
+  
+  

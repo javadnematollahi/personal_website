@@ -3,6 +3,7 @@ from database import Database, LoginModel, RegisterModel
 from bmr import BmrInputs, Bmr
 import bcrypt
 import os
+import ast
 from age_prediction import predict
 
 app = Flask("personal website")
@@ -11,7 +12,7 @@ app.config["ALLOWED_EXTENSIONS"] = {'png', 'jpg', 'jpeg'}
 app.secret_key = "javad personal website"
 db = Database()
 bmrcal = Bmr()
-loginuser = ""
+# loginuser = ""
 
 def allowed_files(file_name):
     return True
@@ -23,6 +24,21 @@ def index():
 @app.route("/result")
 def result():
     return render_template("result.html")
+
+@app.route("/read-your-mind", methods=["POST", "GET"])
+def read_your_mind():
+    if request.method == "POST":
+        x = request.form["number"]
+
+        return redirect(url_for("read_your_mind_result", number=x))
+    
+    return render_template("read-your-mind.html")
+
+@app.route("/read-your-mind/result", methods=["POST", "GET"])
+def read_your_mind_result():
+    y = request.args.get("number")
+    
+    return render_template("read-your-mind-result.html", number=y)
 
 @app.route("/index")
 def index1():
@@ -36,12 +52,17 @@ def logout():
 @app.route("/aiapps", methods=['GET', 'POST'])
 def aiapps():
     if session.get("user_id"):
-        if request.method == 'GET':
-            # print("GETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGETGET")
-            return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
-        elif request.method == 'POST':
-            if request.form["ageorbmr"] == "bmr":
-                print("POSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOSTPOST")
+        if request.method == 'POST':
+            if request.form["appnum"] == "5":
+                try:
+                    usernumber = float(request.form["usernum"])
+                    return redirect(url_for("aiapps", usernumber=usernumber))
+                    # return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, bmr=bmr_res)
+                except:
+                    flash({"type":"warning", "id":5, "text": "Input format data is not correct"})
+                    # return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
+                    return redirect(url_for("aiapps"))
+            if request.form["appnum"] == "2":
                 try:
                     bmr = BmrInputs(
                             weight = float(request.form['weight']),
@@ -52,22 +73,44 @@ def aiapps():
                         bmr_res = bmrcal.men(bmr.weight, bmr.height, bmr.age)
                     elif request.form.get('sex') == 'Female':
                         bmr_res = bmrcal.women(bmr.weight, bmr.height, bmr.age)
-                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, bmr=bmr_res)
+                    return redirect(url_for("aiapps", bmr=bmr_res))
+                    # return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, bmr=bmr_res)
                 except:
-                    flash("login format data not correct", "warning")
-                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
-            elif request.form["ageorbmr"] == "age":
+                    flash({"type":"warning", "id":2, "text": "Input format data is not correct"})
+                    # return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
+                    return redirect(url_for("aiapps"))
+            elif request.form["appnum"] == "1":
                 my_image = request.files['face']
                 if my_image.filename == "":
-                    flash("You must upload your file first.", "info")
-                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
+                    flash({"type":"info", "id":1, "text": "First, you must upload your file."})
+                    return redirect(url_for("aiapps"))
+                    # return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser)
                 else:
                     if my_image and allowed_files(my_image.filename):
                         save_path = os.path.join(app.config["UPLOAD_FOLDER"], my_image.filename)    
                         my_image.save(save_path)
                         paths = predict(save_path)
                         print(paths)
-                    return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, paths=paths)
+                    return redirect(url_for("aiapps", paths=f"{paths}"))
+                    # return render_template("aiapps.html", tabactivelogin="tab-pane fade show active", tabactiveregister="tab-pane fade", username=loginuser, paths=paths)
+        # if request.args.get("origin") == "frompost":
+        paths = request.args.get('paths')
+        bmr_res = request.args.get("bmr") 
+        usernumber = request.args.get("usernumber")
+        # else:
+        print("session: ",session["user_name"])
+        if bmr_res == None:
+            bmr_res = " "
+        if usernumber == None:
+            usernumber = " "
+        if paths == None:
+            paths = []
+        else:
+            paths = ast.literal_eval(paths)
+        tabactivelogin = "tab-pane fade show active"
+        tabactiveregister = "tab-pane fade" 
+        print("BMR_RES", usernumber)
+        return render_template("aiapps.html", tabactivelogin=tabactivelogin, tabactiveregister=tabactiveregister, bmr=bmr_res, paths=paths, usernumber=usernumber, username=session["user_name"])
     else:
         return redirect(url_for("index"))
 
@@ -95,6 +138,7 @@ def login():
                         if bcrypt.checkpw(entered_password_byte, luser.password):
                             flash("Welcome ", "success")
                             session["user_id"] = luser.id
+                            session["user_name"] = luser.username
                             return redirect(url_for("aiapps"))
                         else:
                             flash("password is incorrect", "danger")

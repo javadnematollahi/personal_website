@@ -15,3 +15,25 @@ showSlides(slideIndex);function plusSlide(n) {
 }function nextSlide() {
   plusSlide(1);
 }
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Save the scroll position before the page unloads
+//     window.addEventListener('beforeunload', function() {
+//         localStorage.setItem('scrollPosition', window.scrollY);
+//     });
+
+//     // Restore the scroll position when the page loads
+//     var scrollPosition = localStorage.getItem('scrollPosition');
+//     if (scrollPosition !== null) {
+//         window.scrollTo(0, parseInt(scrollPosition));
+//     }
+// });
+
+
+window.addEventListener('load', function() {
+  var scrollPosition = localStorage.getItem('scrollPosition');
+  if (scrollPosition !== null) {
+      window.scrollTo(0, scrollPosition);
+      localStorage.removeItem('scrollPosition'); // Clear the saved scroll position
+  }
+});

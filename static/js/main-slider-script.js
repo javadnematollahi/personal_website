@@ -37,6 +37,7 @@
                         hide_onleave:true,
                         tmp:'',
                         left: {
+                            
                             h_align:"left",
                             v_align:"bottom",
                             h_offset:20,
