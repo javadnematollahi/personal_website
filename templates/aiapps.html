@@ -92,20 +92,121 @@ AI-Apps
                     <td class="col-5">
                       <div class="col-11 ms-3">
                         <button class="detectOnClick btn btn-primary w-100" id="btn-pose-detect">Predict</button>
+                      </div>
                     </td>
+                  </tr>
+                </table>
+
+
+
+                <span>
+                  <div class="border" style="width: 100%; height: 230px;">
+                    {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    {% if message["id"]==1 %}
+                    <div class="alert alert-{{ message['type'] }} w-auto p-3" role="alert">
+                      {{ message["text"] }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <div class="slideshow-container">
+                      {% for img_path in paths %}
+                      <div class="slide">
+                        <div class="d-flex justify-content-center align-items-center">
+                          <img src="{{img_path}}" alt="Image {{loop.index}}" class="mt-3">
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <a class="prev" onclick="prevSlide()">&#10094;</a>
+                      <a class="next" onclick="nextSlide()">&#10095;</a>
+                    </div>
+
+                  </div>
+                </span>
+
+                <input type="hidden" id="myHiddenInput" name="appnum" value="1">
+              </form>
             </div>
-            </td>
-            </tr>
-            </table>
-
-
-
-            <span>
-              <div class="border" style="width: 100%; height: 230px;">
+            <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+              tabindex="0">
+              <div>
+                You can upload a photo of yourself or a family gathering. Once you've uploaded the photo,
+                click "Predict" to begin the age prediction process. After a few seconds,
+                you'll see all the faces in your image displayed in the slide bar,
+                with each face showing its predicted age at the top.
+              </div>
+            </div>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5">
+      <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
+        <div class="card-header">
+          <div class="row justify-content-between">
+            <div class="col-12">
+              BMR calculator
+            </div>
+            <div class="col-4">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-cal"
+                  type="button" role="tab" aria-controls="nav-home" aria-selected="true">Calculator</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-help-cal"
+                  type="button" role="tab" aria-controls="nav-help-cal" aria-selected="false">Help</button>
+              </div>
+            </nav>
+          </h5>
+          <p class="card-text">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="{{tabactivelogin}}" id="nav-cal" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+              <form method="post">
+                <div class="row justify-content-around">
+                  <div class="mb-3 col-4">
+                    <label class="form-label d-flex justify-content-center">Weight(kg)</label>
+                    <input type="text" class="form-control" name="weight">
+                  </div>
+                  <div class="mb-3 col-4">
+                    <label class="form-label d-flex justify-content-center">Height(cm)</label>
+                    <input type="text" class="form-control" name="height">
+                  </div>
+                  <div class="mb-3 col-4">
+                    <label class="form-label d-flex justify-content-center">Age(year)</label>
+                    <input type="text" class="form-control" name="age">
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" value="Male">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" value="Female" checked>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Female
+                  </label>
+                </div>
+                <input type="hidden" id="myHiddenInput" name="appnum" value="2">
+                <button type="submit" class="btn btn-primary">Calculate</button>
+              </form>
+              <br><br>
+              <label for="readonlyInput">Your BMR is:</label>
+              <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}">
+              <div class="col-12 mt-2">
                 {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}
                 {% for category, message in messages %}
-                {% if message["id"]==1 %}
+                {% if message["id"]==2 %}
                 <div class="alert alert-{{ message['type'] }} w-auto p-3" role="alert">
                   {{ message["text"] }}
                 </div>
@@ -113,131 +214,29 @@ AI-Apps
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
-                <div class="slideshow-container">
-                  {% for img_path in paths %}
-                  <div class="slide">
-                    <div class="d-flex justify-content-center align-items-center">
-                      <img src="{{img_path}}" alt="Image {{loop.index}}" class="mt-3">
-                    </div>
-                  </div>
-                  {% endfor %}
-                  <a class="prev" onclick="prevSlide()">&#10094;</a>
-                  <a class="next" onclick="nextSlide()">&#10095;</a>
-                </div>
-
               </div>
-            </span>
-
-            <input type="hidden" id="myHiddenInput" name="appnum" value="1">
-            </form>
-          </div>
-          <div class="{{tabactiveregister}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-            tabindex="0">
-            <div>
-              You can upload a photo of yourself or a family gathering. Once you've uploaded the photo,
-              click "Predict" to begin the age prediction process. After a few seconds,
-              you'll see all the faces in your image displayed in the slide bar,
-              with each face showing its predicted age at the top.
+            </div>
+            <div class="{{tabactiveregister}}" id="nav-help-cal" role="tabpanel" aria-labelledby="nav-help-cal"
+              tabindex="0">
+              <div>
+                You use energy no matter what you're doing, even when sleeping. 😴
+                The **BMR Calculator** will calculate your **Basal Metabolic Rate** (BMR);
+                the number of calories you'd burn if you stayed in bed all day.
+                <br>
+                If you've noticed that every year, it becomes harder to eat whatever you want and stay slim,
+                you've also learnt that your BMR decreases as you age. 🧬 Likewise,
+                depriving yourself of food in hopes of losing weight also decreases your BMR, a foil to your
+                intentions. 
+                <br>
+                However, a regular routine of cardiovascular exercise can increase your BMR,
+                improving your health and fitness when your body's ability to burn energy gradually slows down. 🏋🏻
+              </div>
             </div>
           </div>
+          </p>
         </div>
-        </p>
       </div>
     </div>
-  </div>
-  <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5">
-    <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
-      <div class="card-header">
-        <div class="row justify-content-between">
-          <div class="col-12">
-            BMR calculator
-          </div>
-          <div class="col-4">
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-cal"
-                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Calculator</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-help-cal"
-                type="button" role="tab" aria-controls="nav-help-cal" aria-selected="false">Help</button>
-            </div>
-          </nav>
-        </h5>
-        <p class="card-text">
-        <div class="tab-content" id="nav-tabContent">
-          <div class="{{tabactivelogin}}" id="nav-cal" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-            <form method="post">
-              <div class="row justify-content-around">
-                <div class="mb-3 col-4">
-                  <label class="form-label d-flex justify-content-center">Weight(kg)</label>
-                  <input type="text" class="form-control" name="weight">
-                </div>
-                <div class="mb-3 col-4">
-                  <label class="form-label d-flex justify-content-center">Height(cm)</label>
-                  <input type="text" class="form-control" name="height">
-                </div>
-                <div class="mb-3 col-4">
-                  <label class="form-label d-flex justify-content-center">Age(year)</label>
-                  <input type="text" class="form-control" name="age">
-                </div>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" value="Male">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Male
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" value="Female" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Female
-                </label>
-              </div>
-              <input type="hidden" id="myHiddenInput" name="appnum" value="2">
-              <button type="submit" class="btn btn-primary">Calculate</button>
-            </form>
-            <br><br>
-            <label for="readonlyInput">Your BMR is:</label>
-            <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}">
-            <div class="col-12 mt-2">
-              {% with messages = get_flashed_messages(with_categories=True) %}
-              {% if messages %}
-              {% for category, message in messages %}
-              {% if message["id"]==2 %}
-              <div class="alert alert-{{ message['type'] }} w-auto p-3" role="alert">
-                {{ message["text"] }}
-              </div>
-              {% endif %}
-              {% endfor %}
-              {% endif %}
-              {% endwith %}
-            </div>
-          </div>
-          <div class="{{tabactiveregister}}" id="nav-help-cal" role="tabpanel" aria-labelledby="nav-help-cal"
-            tabindex="0">
-            <div>
-              You use energy no matter what you're doing, even when sleeping. 😴
-              The **BMR Calculator** will calculate your **Basal Metabolic Rate** (BMR);
-              the number of calories you'd burn if you stayed in bed all day.
-              <br>
-              If you've noticed that every year, it becomes harder to eat whatever you want and stay slim,
-              you've also learnt that your BMR decreases as you age. 🧬 Likewise,
-              depriving yourself of food in hopes of losing weight also decreases your BMR, a foil to your
-              intentions. 
-              <br>
-              However, a regular routine of cardiovascular exercise can increase your BMR,
-              improving your health and fitness when your body's ability to burn energy gradually slows down. 🏋🏻
-            </div>
-          </div>
-        </div>
-        </p>
-      </div>
-    </div>
-  </div>
   </div>
   <div class="row" style="height: 4rem;">
   </div>
@@ -287,18 +286,158 @@ AI-Apps
                   <td class="col-5">
                     <div class="col-11 ms-3">
                       <button class="detectOnClick btn btn-primary w-100" id="btn-pose-detect">Pose detect</button>
+                    </div>
                   </td>
+                </tr>
+              </table>
+              <!-- </div> -->
+              <span>
+                <div class="border mt-2" style="width: 100%; height: 270px;">
+                  {% with messages = get_flashed_messages(with_categories=True) %}
+                  {% if messages %}
+                  {% for category, message in messages %}
+                  {% if message["id"]==3 %}
+                  <div class="alert alert-{{ message['type'] }} w-auto p-3" role="alert">
+                    {{ message["text"] }}
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
+
+                </div>
+              </span>
+              <!-- <div class="mb-3 col-1">
+                    </div> -->
+
+              <input type="hidden" id="myHiddenInput" name="appnum" value="3">
+              <!-- </form> -->
+              <!-- <br><br>
+                  <label for="readonlyInput">Your BMR is:</label>
+                  <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}"> -->
             </div>
-            </td>
-            </tr>
-            </table>
-            <!-- </div> -->
-            <span>
-              <div class="border mt-2" style="width: 100%; height: 270px;">
+            <div class="tab-pane fade" id="webcam-pose" role="tabpanel" aria-labelledby="webcam-pose-tab" tabindex="0">
+              <form method="post" enctype="multipart/form-data">
+
+                <div id="liveView" class="videoView mb-3 col-12 mt-3">
+                  <button id="webcamButton" class="mdc-button mdc-button--raised btn btn-primary w-60">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">ENABLE WEBCAM</span>
+                  </button>
+                  <span>
+                    <div class="border mt-2" style="width: 100%; height: 280px;">
+                      <div style="position: relative;">
+                        <video id="webcam" style="width: 1280px; height: 720px; position: abso" autoplay
+                          playsinline></video>
+                        <canvas class="output_canvas" id="output_canvas" width="1280" height="720"
+                          style="position: absolute; left: 0px; top: 0px;"></canvas>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+
+                <!-- <div class="mb-3 col-1">
+                    </div> -->
+
+                <input type="hidden" id="myHiddenInput" name="appnum" value="4">
+              </form>
+            </div>
+            <div class="{{tabactiveregister}}" id="pose-help" role="tabpanel" aria-labelledby="help-pose-tab"
+              tabindex="0">
+              <div>
+                You can upload a photo of yourself or a family gathering. Once you've uploaded the photo,
+                click "Predict" to begin the age prediction process. After a few seconds,
+                you'll see all the faces in your image displayed in the slide bar,
+                with each face showing its predicted age at the top.
+              </div>
+            </div>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
+      <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
+        <div class="card-header">
+          <div class="row justify-content-between">
+            <div class="col-12">
+              Mind Reader(Just for fun😊)
+            </div>
+            <div class="col-4">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#mind-reader"
+                  type="button" role="tab" aria-controls="mind-reader" aria-selected="true">mind reader</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#mind-reader-help"
+                  type="button" role="tab" aria-controls="mind-reader-help" aria-selected="false">Help</button>
+              </div>
+            </nav>
+          </h5>
+          <p class="card-text">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="{{tabactivelogin}}" id="mind-reader" role="tabpanel" aria-labelledby="nav-home-tab"
+              tabindex="0">
+              <form method="post">
+                <!-- <div class="row justify-content-around">
+                <div class="mb-3 col-4">
+                  <label class="form-label d-flex justify-content-center">Enter a number:</label>
+                  <input type="text" class="form-control" name="usernum">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" onclick="start_progress()">Guess number</button> -->
+                <input type="hidden" id="myHiddenInput" name="appnum" value="5">
+
+
+                <table class="col-12">
+                  <tr>
+                    <td class="col-7">
+                      <label class="form-label d-flex justify-content-center">Enter a number:</label>
+                    </td>
+                    <td class="col-4 ms-1"></td>
+                  </tr>
+                  <tr>
+                    <td class="col-7">
+                      <input type="text" class="form-control" id="usernum" name="usernum">
+                    </td>
+                    <td class="col-5">
+                      <div class="col-11 ms-3">
+                        <button type="submit" class="btn btn-primary">senber number</button>
+                      </div>
+                    </td>
+                    </td>
+                  </tr>
+                </table>
+
+              </form>
+              <br>
+              <div class="row col-11 ms-3">
+                <button class="btn btn-success mb-3 d-flex justify-content-center" onclick="start_progress()">Guess
+                  number</button>
+              </div>
+              <div id="my-progress-bar" class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+                aria-valuemin="0" aria-valuemax="100">
+                <div id="my-progress-bar-child" class="progress-bar" style="width: 0%"></div>
+              </div>
+              <br>
+              <div class="col-12 offset-4">
+                <div class="row">
+                  <label for="readonlyInput" class="d-flex justify-content-center  col-5">The number is:</label>
+                </div>
+                <div class="row">
+                  <input type="text" id="user-number" name="readonlyInput"
+                    class="d-flex justify-content-center col-5 hide-text" readonly value="{{ usernumber }}">
+                </div>
+              </div>
+              <div class="col-12 mt-2">
                 {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}
                 {% for category, message in messages %}
-                {% if message["id"]==3 %}
+                {% if message["id"]==5 %}
                 <div class="alert alert-{{ message['type'] }} w-auto p-3" role="alert">
                   {{ message["text"] }}
                 </div>
@@ -306,162 +445,24 @@ AI-Apps
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
-
               </div>
-            </span>
-            <!-- <div class="mb-3 col-1">
-                    </div> -->
-
-            <input type="hidden" id="myHiddenInput" name="appnum" value="3">
-            <!-- </form> -->
-            <!-- <br><br>
-                  <label for="readonlyInput">Your BMR is:</label>
-                  <input type="text" id="readonlyInput" name="readonlyInput" readonly value="{{bmr}}"> -->
-          </div>
-          <div class="tab-pane fade" id="webcam-pose" role="tabpanel" aria-labelledby="webcam-pose-tab" tabindex="0">
-            <form method="post" enctype="multipart/form-data">
-
-              <div id="liveView" class="videoView mb-3 col-12 mt-3">
-                <button id="webcamButton" class="mdc-button mdc-button--raised btn btn-primary w-60">
-                  <span class="mdc-button__ripple"></span>
-                  <span class="mdc-button__label">ENABLE WEBCAM</span>
-                </button>
-                <span>
-                  <div class="border mt-2" style="width: 100%; height: 280px;">
-                    <div style="position: relative;">
-                      <video id="webcam" style="width: 1280px; height: 720px; position: abso" autoplay
-                        playsinline></video>
-                      <canvas class="output_canvas" id="output_canvas" width="1280" height="720"
-                        style="position: absolute; left: 0px; top: 0px;"></canvas>
-                    </div>
-                  </div>
-                </span>
+            </div>
+            <div class="{{tabactiveregister}}" id="mind-reader-help" role="tabpanel" aria-labelledby="nav-help-cal"
+              tabindex="0">
+              <div>
+                You must enter a number.
+                <br>
+                Then I'll guess your number.
               </div>
-
-              <!-- <div class="mb-3 col-1">
-                    </div> -->
-
-              <input type="hidden" id="myHiddenInput" name="appnum" value="4">
-            </form>
-          </div>
-          <div class="{{tabactiveregister}}" id="pose-help" role="tabpanel" aria-labelledby="help-pose-tab"
-            tabindex="0">
-            <div>
-              You can upload a photo of yourself or a family gathering. Once you've uploaded the photo,
-              click "Predict" to begin the age prediction process. After a few seconds,
-              you'll see all the faces in your image displayed in the slide bar,
-              with each face showing its predicted age at the top.
             </div>
           </div>
+          </p>
         </div>
-        </p>
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-5">
-    <div class="card custom-card text-bg-info mb-3" style="max-width: 40rem;">
-      <div class="card-header">
-        <div class="row justify-content-between">
-          <div class="col-12">
-            Mind Reader(Just for fun😊)
-          </div>
-          <div class="col-4">
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#mind-reader"
-                type="button" role="tab" aria-controls="mind-reader" aria-selected="true">mind reader</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#mind-reader-help"
-                type="button" role="tab" aria-controls="mind-reader-help" aria-selected="false">Help</button>
-            </div>
-          </nav>
-        </h5>
-        <p class="card-text">
-        <div class="tab-content" id="nav-tabContent">
-          <div class="{{tabactivelogin}}" id="mind-reader" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-            <form method="post">
-              <!-- <div class="row justify-content-around">
-                <div class="mb-3 col-4">
-                  <label class="form-label d-flex justify-content-center">Enter a number:</label>
-                  <input type="text" class="form-control" name="usernum">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary" onclick="start_progress()">Guess number</button> -->
-              <input type="hidden" id="myHiddenInput" name="appnum" value="5">
-
-
-              <table class="col-12">
-                <tr>
-                  <td class="col-7">
-                    <label class="form-label d-flex justify-content-center">Enter a number:</label>
-                  </td>
-                  <td class="col-4 ms-1"></td>
-                </tr>
-                <tr>
-                  <td class="col-7">
-                    <input type="text" class="form-control" id="usernum" name="usernum">
-                  </td>
-                  <td class="col-5">
-                    <div class="col-11 ms-3">
-                      <button type="submit" class="btn btn-primary">senber number</button>
-                    </div>
-                  </td>
-                  </td>
-                </tr>
-              </table>
-
-            </form>
-            <br>
-            <div class="row col-11 ms-3">
-              <button class="btn btn-success mb-3 d-flex justify-content-center" onclick="start_progress()">Guess number</button>
-            </div>
-            <div id="my-progress-bar" class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
-              aria-valuemin="0" aria-valuemax="100">
-              <div id="my-progress-bar-child" class="progress-bar" style="width: 0%"></div>
-            </div>
-            <br>
-            <div class="col-12 offset-4">
-              <div class="row">
-                <label for="readonlyInput" class="d-flex justify-content-center  col-5">The number is:</label>
-              </div>
-              <div class="row">
-                <input type="text" id="user-number" name="readonlyInput" class="d-flex justify-content-center col-5 hide-text"
-                 readonly value="{{ usernumber }}">
-              </div>
-            </div>
-            <div class="col-12 mt-2">
-              {% with messages = get_flashed_messages(with_categories=True) %}
-              {% if messages %}
-              {% for category, message in messages %}
-              {% if message["id"]==5 %}
-              <div class="alert alert-{{ message['type'] }} w-auto p-3" role="alert">
-                {{ message["text"] }}
-              </div>
-              {% endif %}
-              {% endfor %}
-              {% endif %}
-              {% endwith %}
-            </div>
-          </div>
-          <div class="{{tabactiveregister}}" id="mind-reader-help" role="tabpanel" aria-labelledby="nav-help-cal"
-            tabindex="0">
-            <div>
-              You must enter a number.
-              <br>
-              Then I'll guess your number.
-            </div>
-          </div>
-        </div>
-        </p>
-      </div>
-    </div>
-  </div>
-  </div>
-<script src="https://cdn.jsdelivr.net/npm/material-components-web@14.0.0/dist/material-components-web.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/material-components-web@14.0.0/dist/material-components-web.min.js"></script>
   <!-- <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> -->
   <script src="static/js/mindreader.js"></script>
   <script src="static/js/bootstrap.js"></script>
