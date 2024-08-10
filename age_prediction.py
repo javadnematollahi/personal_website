@@ -1,5 +1,5 @@
 import cv2
-import tensorflow as tf
+# import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib
 import dlib
@@ -7,8 +7,13 @@ import shutil
 import os
 from Align_face_own import *
 matplotlib.use('agg')
+import onnxruntime as ort
+import numpy as np
+# import onnx
+# from onnxoptimizer import optimize
+# import tf2onnx
 # landmarks_detector = LandmarksDetector('weights/shape_predictor_68_face_landmarks.dat')
-loaded_model = tf.keras.models.load_model('weights/Age_prediction.h5')
+# loaded_model = tf.keras.models.load_model('weights/Age_prediction.h5')
 
 def predict(image_path: str):
   detector = dlib.get_frontal_face_detector()
@@ -37,9 +42,22 @@ def predict(image_path: str):
     image_RGB = cv2.cvtColor(faceAligned, cv2.COLOR_BGR2RGB)
     image_edit = cv2.resize(image_RGB, (128, 128))
     image_data=image_edit.reshape(1,128,128,3)
-    image_data = image_data / 255.0
-    age_pred = loaded_model.predict(image_data)
-    print(age_pred)
+    image_data = image_data.astype(np.float32) / 255.0
+
+
+    onnx_model_path = 'optimized_model.onnx'
+    ort_session = ort.InferenceSession(onnx_model_path)
+
+    # Prepare input data
+    # Replace this with the actual input shape and data
+    input_name = ort_session.get_inputs()[0].name
+
+    # Run inference
+    age_pred = ort_session.run(None, {input_name: image_data})
+
+
+    # age_pred = loaded_model.predict(image_data)
+    print(age_pred[0][0][0])
     # return preds,image
     # age,image = predict('input/00.jpg')
     # age_pred=round(age_pred[0][0], 2)
@@ -48,7 +66,7 @@ def predict(image_path: str):
     fig1.add_subplot(1,1,1)
     plt.imshow(image_edit)
     plt.axis("off")
-    plt.title("Age:{:.2f}".format(age_pred[0][0]),fontsize = 20)
+    plt.title("Age:{:.2f}".format(age_pred[0][0][0]),fontsize = 20)
     plt.savefig(f"static/images/ageimages/{i}.jpg", bbox_inches='tight', pad_inches=0)
     plt.close(fig1)
     paths.append(f"static/images/ageimages/{i}.jpg")
@@ -65,4 +83,27 @@ def predict(image_path: str):
   # plt.show()
 
 if __name__=="__main__":
-  predict('input/javad.jpg')
+  predict('static/uploads/1.jpg')
+
+
+  # # convert tensorflow model to onnx
+  # # Load your .h5 model
+  # h5_model_path = 'weights\Age_prediction.h5'
+  # model = tf.keras.models.load_model(h5_model_path)
+
+  # # Convert the model to ONNX
+  # onnx_model_path = 'model.onnx'
+  # spec = (tf.TensorSpec(model.inputs[0].shape, model.inputs[0].dtype),)
+  # output_path = onnx_model_path
+  # model_proto, _ = tf2onnx.convert.from_keras(model, input_signature=spec, opset=18)
+  # with open(output_path, "wb") as f:
+  #     f.write(model_proto.SerializeToString())
+  # onnx_model = onnx.load(onnx_model_path)
+
+  # # Apply optimizations
+  # optimized_model = optimize(onnx_model)
+
+  # # Save the optimized model
+  # optimized_model_path = 'optimized_model.onnx'
+  # onnx.save(optimized_model, optimized_model_path)
+

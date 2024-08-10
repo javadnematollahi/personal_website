@@ -4,6 +4,7 @@ from bmr import BmrInputs, Bmr
 import bcrypt
 import os
 import ast
+import binascii
 from age_prediction import predict
 
 app = Flask("personal website")
@@ -130,12 +131,16 @@ def login():
                     )
                     loginuser = login.username
                     luser = db.read_from_database_by_username(login.username)
+                    print(login.username, request.form['password'])
+                    print(luser)
                     if luser is None:
                         flash("username is incorrect", "warning")
                         return redirect(url_for("login"))
                     else:
                         entered_password_byte = login.password.encode("utf-8")
-                        if bcrypt.checkpw(entered_password_byte, luser.password):
+                        print(luser.password)
+                        database_hashed_password = binascii.unhexlify(luser.password[2:])
+                        if bcrypt.checkpw(entered_password_byte, database_hashed_password):
                             flash("Welcome ", "success")
                             session["user_id"] = luser.id
                             session["user_name"] = luser.username
@@ -143,7 +148,8 @@ def login():
                         else:
                             flash("password is incorrect", "danger")
                             return redirect(url_for("login"))                        
-                except:
+                except Exception as e:
+                    print(e)
                     flash("login format data not correct", "warning")
                     return redirect(url_for("login"))
             else:
